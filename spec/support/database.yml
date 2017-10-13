@@ -1,0 +1,9 @@
+db:
+  adapter: sqlanywhere
+  username: "dba"
+  password: "sql"
+  Language: EN
+  CharSet: UTF-8
+  server: test
+  database: test
+  dbf: spec/db/test.db
