@@ -21,9 +21,9 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "sqlanywhere", ">= 0.1.6"
   spec.add_dependency "activerecord", ">= 4.1.8"
+  spec.add_dependency "composite_primary_keys", ">= 7.0.16"
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "composite_primary_keys", ">= 7.0.16"
 end

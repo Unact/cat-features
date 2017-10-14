@@ -1,6 +1,5 @@
 require "bundler/setup"
 require "cat-features"
-require "composite_primary_keys"
 
 Dir[File.join('.', 'spec', 'models', '**' '*.rb')].each {|f| require f}
 Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}

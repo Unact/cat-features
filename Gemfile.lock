@@ -12,6 +12,7 @@ PATH
   specs:
     cat-features (0.1.0)
       activerecord (>= 4.1.8)
+      composite_primary_keys (>= 7.0.16)
       sqlanywhere (>= 0.1.6)
 
 GEM
@@ -64,7 +65,6 @@ DEPENDENCIES
   activerecord-sqlanywhere-adapter!
   bundler (~> 1.15)
   cat-features!
-  composite_primary_keys (>= 7.0.16)
   rake (~> 10.0)
   rspec (~> 3.0)
 

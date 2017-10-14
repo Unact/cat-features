@@ -72,6 +72,32 @@ module CatFeatures
             END;
           sql
         )
+
+        ActiveRecord::Base.connection.execute(
+          <<-sql
+            CREATE TABLE dbo.user_option(
+              iam VARCHAR(255) NOT NULL,
+              id VARCHAR(255) NOT NULL,
+              value LONG VARCHAR NOT NULL,
+
+              PRIMARY KEY(iam, id)
+            );
+
+            CREATE FUNCTION dbo.getuseroption (
+              @option_id VARCHAR(255),
+              @user_id VARCHAR(255)
+            ) RETURNS LONG VARCHAR
+            BEGIN
+              DECLARE @res LONG VARCHAR;
+              SET @res =COALESCE(
+                (SELECT value FROM dbo.user_option WHERE iam=USER_ID(@user_id) AND id=@option_id),
+                (SELECT value FROM dbo.user_option WHERE iam=USER_ID('dbo') AND id=@option_id)
+              );
+
+              RETURN @res;
+            END;
+          sql
+        )
       end
     end
   end
