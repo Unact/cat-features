@@ -1,12 +1,6 @@
 require "spec_helper"
 
 RSpec.describe CatFeatures::IdGenerator do
-  before (:all) do
-    CatFeatures::Database.delete
-    CatFeatures::Database.create
-    CatFeatures::Database.setup
-  end
-
   context "owner is specified" do
     it "AR\#next_id works as expected" do
       expect(SimplePrimaryKeyWithOwner.next_id).to_not be_nil

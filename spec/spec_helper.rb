@@ -6,6 +6,10 @@ Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}
 
 NEED_SPECIFY_OWNER = ActiveRecord::VERSION::MAJOR == 5
 
+CatFeatures::Database.delete
+CatFeatures::Database.create
+CatFeatures::Database.setup
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
