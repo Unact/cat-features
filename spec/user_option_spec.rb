@@ -35,7 +35,7 @@ RSpec.describe CatFeatures::UserOption do
     expect(UserOption[:user_option_3]).to eq "default"
   end
 
-  it "deleting unexisted option works correct" do
+  it "deleting non existing option works correct" do
     UserOption[:user_option_4] = nil
   end
 end
