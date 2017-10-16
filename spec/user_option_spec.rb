@@ -3,7 +3,7 @@ require "spec_helper"
 UserOption = CatFeatures::UserOption
 
 RSpec.describe CatFeatures::UserOption do
-  it "class methods work correct" do
+  it "class methods work correctly" do
     expect(UserOption[:user_option_1]).to be_nil
     UserOption[:user_option_1] = "1234"
     expect(UserOption[:user_option_1]).to eq "1234"
@@ -14,7 +14,7 @@ RSpec.describe CatFeatures::UserOption do
     expect(UserOption::Model.count).to eq 0
   end
 
-  it "instance methods work correct" do
+  it "instance methods work correctly" do
     expect(UserOption.by_user(:dba)[:user_option_2]).to be_nil
     UserOption.by_user(:dba)[:user_option_2] = "1234"
     expect(UserOption.by_user(:dba)[:user_option_2]).to eq "1234"
@@ -35,7 +35,7 @@ RSpec.describe CatFeatures::UserOption do
     expect(UserOption[:user_option_3]).to eq "default"
   end
 
-  it "deleting non existing option works correct" do
+  it "deleting non existing option works correctly" do
     UserOption[:user_option_4] = nil
   end
 end
