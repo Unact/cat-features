@@ -19,7 +19,7 @@
 git checkout AR-5.1
 git rebase <Название ветки>
 rvm use .
-rspec scpe
+rspec spec
 ```
 И если тесты пройдены, то разработка окончена. Иначе - поправить где надо.
 

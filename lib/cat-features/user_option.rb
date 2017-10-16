@@ -24,11 +24,11 @@ module CatFeatures
 
 
     def [] name
-      Model.getuseroption(name, @user_name)
+      Model.user_option(name, @user_name)
     end
 
     def []= name, value
-      Model.setuseroption(name, value, @user_name)
+      Model.set_user_option(name, value, @user_name)
     end
 
     class Model < ActiveRecord::Base
@@ -36,14 +36,14 @@ module CatFeatures
       self.primary_keys = 'iam', 'id'
 
       class << self
-        def getuseroption option, user
+        def user_option option, user
           params = [option, user].map{|part| connection.quote part}.join(',')
           connection.select_value("select dbo.getuseroption(#{params})")
         end
 
-        def setuseroption option, value, user
+        def set_user_option option, value, user
           unless value
-            deleteuseroption option, user
+            delete_user_option option, user
             return
           end
 
@@ -58,9 +58,9 @@ module CatFeatures
           end
         end
 
-        def deleteuseroption option, user
+        def delete_user_option option, user
           user_option = find_by(iam: user_id(user), id: option)
-          user_option.delete
+          user_option.delete if user_option
         end
 
         def user_id user
