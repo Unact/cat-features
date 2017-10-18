@@ -45,6 +45,11 @@ module CatFeatures
             t.string :table_name
             t.string :primary_key_name
           end
+
+          create_table :simple_table do |t|
+            t.string :name
+            t.string :info
+          end
         end
 
         ActiveRecord::Base.connection.execute(
