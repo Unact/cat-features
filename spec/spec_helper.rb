@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "cat-features"
 require 'database_cleaner'
+require 'byebug'
 
 Dir[File.join('.', 'spec', 'models', '**' '*.rb')].each {|f| require f}
 Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}

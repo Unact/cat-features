@@ -9,7 +9,7 @@ module CatFeatures
       end
 
       def create
-        cmd = "dbinit -p 8192 -z \"1251CYR(CaseSensitivity=Ignore)\" -zn \"UCA(CaseSensitivity=Ignore;AccentSensitivity=Ignore;PunctuationSensitivity=Primary)\" -b -s -pd -n #{config["dbf"]} -dba #{config["username"]},#{config["password"]}"
+        cmd = "dbinit -p 8192 -z \"1251CYR(CaseSensitivity=Ignore)\" -zn \"UCA(CaseSensitivity=Ignore;AccentSensitivity=Ignore;PunctuationSensitivity=Primary)\" -b -q -s -pd -n #{config["dbf"]} -dba #{config["username"]},#{config["password"]}"
         Kernel.system(cmd)
       end
 
@@ -49,6 +49,10 @@ module CatFeatures
           create_table :simple_table do |t|
             t.string :name
             t.string :info
+            t.string :auto_info
+            t.string :sys_info
+            t.timestamp :cts
+            t.timestamp :ts
           end
         end
 
@@ -56,6 +60,9 @@ module CatFeatures
           <<-sql
             ALTER TABLE simple_primary_keys ADD PRIMARY KEY (id);
             ALTER TABLE composite_primary_keys ADD PRIMARY KEY (id, subid);
+            ALTER TABLE simple_table ALTER cts DEFAULT current timestamp;
+            ALTER TABLE simple_table ALTER ts DEFAULT timestamp;
+            ALTER TABLE simple_table ALTER ts DEFAULT timestamp;
           sql
         )
 

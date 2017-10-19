@@ -33,6 +33,7 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     builder (3.2.3)
+    byebug (9.0.6)
     composite_primary_keys (7.0.16)
       activerecord (~> 4.1.7)
     database_cleaner (1.5.3)
@@ -65,6 +66,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-sqlanywhere-adapter!
   bundler (~> 1.15)
+  byebug (~> 9.0.6)
   cat-features!
   database_cleaner (~> 1.5.3)
   rake (~> 10.0)
