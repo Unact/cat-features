@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/Unact/activerecord-sqlanywhere-adapter
-  revision: ca095178af67b052e7c3ae50fe5fa2e5dfaa50a5
+  revision: 8ce0fb77984d7fa6bb92915458a772b756976f72
   branch: rails51
   specs:
-    activerecord-sqlanywhere-adapter (2.1.5)
+    activerecord-sqlanywhere-adapter (2.1.6)
       activerecord (>= 5.0.0)
       sqlanywhere (>= 0.2.0)
 
@@ -35,8 +35,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-=======
     arel (8.0.0)
+    byebug (9.0.6)
     composite_primary_keys (10.0.1)
       activerecord (~> 5.1.0)
     concurrent-ruby (1.0.5)
