@@ -27,11 +27,11 @@ module CatFeatures
 
           define_method "#{code}=".to_sym do |value|
             unless value.present?
-              send(association_name, true).try(:mark_for_destruction)
+              send("reload_#{association_name}").try(:mark_for_destruction)
               extra = nil
             else
               attributes = {value: value}
-              extra = send(association_name, true)
+              extra = send("reload_#{association_name}")
               if extra
                 extra.assign_attributes(attributes)
               else

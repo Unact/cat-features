@@ -19,7 +19,7 @@ PATH
   specs:
     cat-features (0.1.1)
       activerecord (= 5.1.2)
-      composite_primary_keys (>= 7.0.16)
+      composite_primary_keys (= 10.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -37,7 +37,7 @@ GEM
       tzinfo (~> 1.1)
     arel (8.0.0)
     byebug (9.0.6)
-    composite_primary_keys (10.0.1)
+    composite_primary_keys (10.0.0)
       activerecord (~> 5.1.0)
     concurrent-ruby (1.0.5)
     database_cleaner (1.5.3)
