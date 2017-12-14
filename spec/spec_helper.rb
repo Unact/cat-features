@@ -1,16 +1,18 @@
 require "bundler/setup"
+require 'byebug'
 require "cat-features"
 require 'database_cleaner'
-require 'byebug'
-
-Dir[File.join('.', 'spec', 'models', '**' '*.rb')].each {|f| require f}
-Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}
 
 NEED_SPECIFY_OWNER = ActiveRecord::VERSION::MAJOR == 5
+Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}
 
 CatFeatures::Database.delete
 CatFeatures::Database.create
 CatFeatures::Database.setup
+
+# Сначало создадим бд, а потом вызовем модели
+Dir[File.join('.', 'spec', 'models', '**' '*.rb')].each {|f| require f}
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

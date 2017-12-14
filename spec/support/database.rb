@@ -110,6 +110,33 @@ module CatFeatures
             END;
           sql
         )
+        ActiveRecord::Base.connection.execute(
+          <<-sql
+            CREATE TABLE dbo.etype(
+              id INT NOT NULL,
+              table_name VARCHAR(64),
+              name VARCHAR(128),
+              code VARCHAR(64),
+              expression VARCHAR(250),
+              role INT,
+              value_list INT,
+
+              PRIMARY KEY(id)
+            );
+
+            CREATE TABLE dbo.extra(
+              id INT NOT NULL,
+              subid INT,
+              etype INT,
+              record_id INT,
+              value VARCHAR(255),
+              ts TIMESTAMP DEFAULT TIMESTAMP,
+              xid UNIQUEIDENTIFIER,
+
+              PRIMARY KEY(id)
+            );
+          sql
+        )
       end
     end
   end
