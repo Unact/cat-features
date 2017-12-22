@@ -1,13 +1,17 @@
 module CatFeatures
   module Extrable
-    extend ActiveSupport::Concern
-
-    included do |base|
-      base.define_extra_methods
-    end
 
     module ClassMethods
+      @_extra_methods_defined = false
+
+      def _reflect_on_association(association)
+        define_extra_methods
+        super(association)
+      end
+
       def define_extra_methods
+        return if @_extra_methods_defined
+        @_extra_methods_defined = true
         foreign_key = self.primary_key.is_a?(String) ? Extra.foreign_key.first : Extra.foreign_key
         CatFeatures::Extrable::Etype.where(table_name: table_name.split(".")[-1]).each do |etype|
           code = etype.code.gsub(".", "_")
@@ -44,6 +48,14 @@ module CatFeatures
       end
     end
 
+    module InstanceMethods
+      def method_missing(method_sym, *args)
+        self.class.define_extra_methods
+        return self.method(method_sym).call(*args) if self.methods.include?(method_sym)
+        super
+      end
+    end
+
     class Etype < ActiveRecord::Base
       self.table_name = 'dbo.etype'
       acts_as_id_generator
@@ -61,7 +73,8 @@ module CatFeatures
 
     ActiveRecord::Base.class_eval do
       def self.acts_as_extrable
-        include Extrable
+        extend ClassMethods
+        include InstanceMethods
       end
     end
   end
