@@ -25,11 +25,11 @@ RSpec.describe CatFeatures::IdGenerator do
   end
 
   context 'idgenerator function not working' do
-    let(:normal_idgen_function) do
+    let!(:normal_idgen_function) do
       ActiveRecord::Base.connection.
         select_value("SELECT proc_defn FROM sys.sysprocedure WHERE proc_name = 'idgenerator'")
     end
-    let(:not_working_idgen_function) do
+    let!(:not_working_idgen_function) do
       "CREATE FUNCTION dbo.idgenerator(@param1 varchar(128), @param2 varchar(128), @param3 varchar(32) default 'dbo')
           RETURNS bigint
         BEGIN
@@ -38,7 +38,6 @@ RSpec.describe CatFeatures::IdGenerator do
     end
 
     before do
-      normal_idgen_function
       ActiveRecord::Base.connection.execute('DROP FUNCTION dbo.idgenerator')
       ActiveRecord::Base.connection.execute(not_working_idgen_function)
     end
