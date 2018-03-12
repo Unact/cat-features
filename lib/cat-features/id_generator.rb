@@ -9,23 +9,33 @@ module CatFeatures
     end
 
     module ClassMethods
+      MAX_TRIES = 3
+
       def next_id
-        raise "У модели #{self.to_s} составной первичный ключ, поэтому нельзя сгенерировать первичный ключ" if primary_key.is_a? Array
-
-        new_id = self.uncached do
-          table_name_part, owner_part = table_name.split(".").reverse
-
-          params = [table_name_part, primary_key, owner_part].
-            compact.
-            map{|part| connection.quote part}.
-            join(',')
-
-          connection.select_value("select dbo.idgenerator(#{params})")
+        if primary_key.is_a?(Array)
+          raise "У модели #{self.to_s} составной первичный ключ, поэтому нельзя сгенерировать первичный ключ"
         end
 
-        raise "Первичный ключ не сгенерирован. Проверьте название таблицы" unless new_id
+        begin
+          params = nil
+          tries ||= MAX_TRIES
+          new_id = self.uncached do
+            table_name_part, owner_part = table_name.split('.').reverse
 
-        new_id
+            params = [table_name_part, primary_key, owner_part].
+              compact.
+              map{|part| connection.quote(part)}.
+              join(',')
+
+            connection.select_value("select dbo.idgenerator(#{params})")
+          end
+
+          raise "Первичный ключ не сгенерирован. Проверьте название таблицы. Параметры: #{params}" unless new_id
+          new_id
+        rescue => e
+          retry if (tries-=1) > 0
+          raise e
+        end
       end
     end
   end
