@@ -10,8 +10,9 @@ GIT
 PATH
   remote: .
   specs:
-    cat-features (0.1.3)
+    cat-features (0.1.5)
       activerecord (>= 4.1.8)
+      acts_as_singleton (~> 0.0.8)
       composite_primary_keys (>= 7.0.16)
       sqlanywhere (>= 0.1.6)
 
@@ -31,6 +32,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_singleton (0.0.8)
+      activerecord (>= 3.1.0)
     arel (5.0.1.20140414130214)
     builder (3.2.3)
     byebug (9.0.6)
@@ -73,4 +76,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.16.0.pre.2
+   1.16.1
