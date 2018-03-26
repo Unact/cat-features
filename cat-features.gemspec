@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activerecord", "= 5.1.2"
   spec.add_dependency "composite_primary_keys", "= 10.0.0"
+  spec.add_dependency "acts_as_singleton", "~> 0.0.8"
 
   spec.add_development_dependency "byebug", "~> 9.0.6"
   spec.add_development_dependency "bundler", "~> 1.15"
