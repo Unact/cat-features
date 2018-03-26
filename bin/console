@@ -11,4 +11,8 @@ require "cat-features"
 # Pry.start
 
 require "irb"
+
+require "./spec/support/database"
+ActiveRecord::Base.establish_connection(CatFeatures::Database.config)
+
 IRB.start(__FILE__)
