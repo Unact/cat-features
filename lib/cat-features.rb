@@ -9,6 +9,7 @@ require "cat-features/active_record/base"
 require "cat-features/active_record/relation"
 require "cat-features/active_record/persistance"
 require "cat-features/dummy"
+require "cat-features/ddate_intervals"
 
 module CatFeatures
 end
