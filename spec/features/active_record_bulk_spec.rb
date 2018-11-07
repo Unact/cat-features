@@ -19,6 +19,11 @@ RSpec.describe 'ActiveRecordBulk' do
       expect(SimpleTable.find(1).auto_info).not_to be_nil
     end
 
+    it 'creates new records with null values' do
+      SimpleTable.create_bulk([{id: 1, name: nil}])
+      expect(SimpleTable.find(1).name).to be_nil
+    end
+
     it 'raises error when duplicate primary key' do
       expect{SimpleTable.create_bulk([{id: 1}, {id: 1}])}.to raise_error(ActiveRecord::StatementInvalid)
     end
@@ -56,6 +61,11 @@ RSpec.describe 'ActiveRecordBulk' do
           expect(rec.info).to eq row[:info]
           expect(rec.sys_info).to be_nil
         end
+      end
+
+      it 'with null values' do
+        @update_data.each{|rec| rec.merge!(name: nil)}
+        SimpleTable.update_bulk(@update_data)
       end
 
       it 'with specified attributes' do
