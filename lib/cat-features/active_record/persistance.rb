@@ -45,8 +45,9 @@ module ActiveRecord
       # После :save сравниваем измененные поля с полями, которые действительно хотели изменить
       attrs_proc.call(attr_names_without_system_attributes).select do |atr_after_save_binds, atr_after_save_val|
         atr_after_save_name = atr_after_save_binds.name
+
         attributes_values.any?{|attr_val| attr_val.first.name == atr_after_save_name && attr_val.last != atr_after_save_val} ||
-        attrs.any?{|atr| atr_after_save_name == atr.to_s && !atr_after_save_val.nil?}
+        attrs.any?{|atr| atr_after_save_name == atr.to_s}
       end
     end
 

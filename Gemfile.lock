@@ -17,7 +17,7 @@ GIT
 PATH
   remote: .
   specs:
-    cat-features (0.1.6)
+    cat-features (0.1.7)
       activerecord (= 5.1.2)
       acts_as_singleton (~> 0.0.8)
       composite_primary_keys (= 10.0.0)
@@ -80,4 +80,4 @@ DEPENDENCIES
   sqlanywhere!
 
 BUNDLED WITH
-   1.16.0.pre.3
+   1.16.2
