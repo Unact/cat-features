@@ -19,9 +19,8 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "sqlanywhere", ">= 0.1.6"
-  spec.add_dependency "activerecord", ">= 4.1.8"
-  spec.add_dependency "composite_primary_keys", ">= 7.0.16"
+  spec.add_dependency "activerecord", "= 5.1.2"
+  spec.add_dependency "composite_primary_keys", "= 10.0.0"
   spec.add_dependency "acts_as_singleton", "~> 0.0.8"
 
   spec.add_development_dependency "byebug", "~> 9.0.6"

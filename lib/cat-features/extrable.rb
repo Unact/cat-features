@@ -1,5 +1,6 @@
 module CatFeatures
   module Extrable
+    extend ActiveSupport::Concern
 
     module ClassMethods
       @_extra_methods_defined = false
@@ -31,11 +32,11 @@ module CatFeatures
 
           define_method "#{code}=".to_sym do |value|
             unless value.present?
-              send(association_name, true).try(:mark_for_destruction)
+              send("reload_#{association_name}").try(:mark_for_destruction)
               extra = nil
             else
               attributes = {value: value}
-              extra = send(association_name, true)
+              extra = send("reload_#{association_name}")
               if extra
                 extra.assign_attributes(attributes)
               else
@@ -51,7 +52,7 @@ module CatFeatures
     module InstanceMethods
       def method_missing(method_sym, *args)
         self.class.define_extra_methods
-        return self.method(method_sym).call(*args) if self.methods.include?(method_sym)
+        return self.method(method_sym).call(*args) if self.methods.include? method_sym
         super
       end
     end
@@ -69,7 +70,6 @@ module CatFeatures
         [:record_id, :subid]
       end
     end
-
 
     ActiveRecord::Base.class_eval do
       def self.acts_as_extrable
