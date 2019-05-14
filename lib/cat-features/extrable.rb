@@ -55,6 +55,11 @@ module CatFeatures
         return self.method(method_sym).call(*args) if self.methods.include? method_sym
         super
       end
+
+      def respond_to_missing?(method_sym, include_private = false)
+        self.class.define_extra_methods
+        self.methods.include?(method_sym) || super
+      end
     end
 
     class Etype < ActiveRecord::Base
