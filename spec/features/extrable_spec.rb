@@ -11,6 +11,14 @@ RSpec.describe CatFeatures::Extrable do
     load 'models/simple_table.rb'
   end
 
+  context 'etypes' do
+    it 'should list etypes' do
+      etypes = SimpleTable.etypes
+      expect(etypes.length).to eq(1)
+      expect(etypes.first.id).to eq(@etype.id)
+    end
+  end
+
   context 'associations' do
     it 'methods exists' do
       rec = SimpleTable.create(name: 'Test')

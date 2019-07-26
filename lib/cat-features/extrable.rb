@@ -14,7 +14,7 @@ module CatFeatures
         return if @_extra_methods_defined
         @_extra_methods_defined = true
         foreign_key = self.primary_key.is_a?(String) ? Extra.foreign_key.first : Extra.foreign_key
-        CatFeatures::Extrable::Etype.where(table_name: table_name.split(".")[-1]).each do |etype|
+        etypes.each do |etype|
           code = etype.code.gsub(".", "_")
 
           association_name = "#{code}_extra".to_sym
@@ -46,6 +46,10 @@ module CatFeatures
             extra.try(:value)
           end
         end
+      end
+
+      def etypes
+        CatFeatures::Extrable::Etype.where(table_name: table_name.split(".")[-1])
       end
     end
 
