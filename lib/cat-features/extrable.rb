@@ -51,6 +51,12 @@ module CatFeatures
       def etypes
         CatFeatures::Extrable::Etype.where(table_name: table_name.split(".")[-1])
       end
+
+      def etypes_names
+        etypes.map do |etype|
+          etype.code.gsub(".", "_")
+        end
+      end
     end
 
     module InstanceMethods
