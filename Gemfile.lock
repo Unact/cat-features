@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/Unact/activerecord-sqlanywhere-adapter
-  revision: acdd73285bba4a0b90fa862daccb69ef15357216
+  revision: 91a44eb4c5ad9e80d1f0a0d4f8ed8b6f075f0366
   branch: rails51
   specs:
-    activerecord-sqlanywhere-adapter (2.1.17)
+    activerecord-sqlanywhere-adapter (2.1.18)
       activerecord (>= 5.0.0)
       sqlanywhere (>= 0.2.0)
 
