@@ -8,11 +8,10 @@ GIT
       sqlanywhere (>= 0.2.0)
 
 GIT
-  remote: https://github.com/springbok/sqlanywhere
-  revision: da95a9e72124f7e0165bbaf8be04cc1febab3980
-  branch: ruby22
+  remote: https://github.com/Unact/sqlanywhere
+  revision: 9427681a3ce0d3c9fee4c52e3f395365000f5458
   specs:
-    sqlanywhere (0.2.0)
+    sqlanywhere (0.2.2)
 
 PATH
   remote: .
