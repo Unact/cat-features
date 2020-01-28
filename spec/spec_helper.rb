@@ -3,7 +3,6 @@ require 'byebug'
 require "cat-features"
 require 'database_cleaner'
 
-NEED_SPECIFY_OWNER = ActiveRecord::VERSION::MAJOR == 5
 Dir[File.join('.', 'spec', 'support', '**' '*.rb')].each {|f| require f}
 
 CatFeatures::Database.delete

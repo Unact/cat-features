@@ -22,11 +22,8 @@ module CatFeatures
         ActiveRecord::Migration.verbose = false
         ActiveRecord::Base.establish_connection(config)
 
-        # Для 5-х рельс надо ОБЯЗАТЕЛЬНО заполнять овнера
-        if NEED_SPECIFY_OWNER
-          ActiveRecord::Base.schema_migrations_table_name = "#{config["username"]}.schema_migrations"
-          ActiveRecord::Base.internal_metadata_table_name = "#{config["username"]}.ar_internal_metadata"
-        end
+        ActiveRecord::Base.schema_migrations_table_name = "#{config["username"]}.schema_migrations"
+        ActiveRecord::Base.internal_metadata_table_name = "#{config["username"]}.ar_internal_metadata"
 
         ActiveRecord::Schema.define(:version => 1) do
           create_table :simple_primary_keys, id: false do |t|

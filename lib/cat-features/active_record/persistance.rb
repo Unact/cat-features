@@ -25,7 +25,7 @@ module ActiveRecord
     def update_for_bulk attrs
       attributes_values = arel_attributes_for_insert_or_update(
         attrs,
-        ->(keys){arel_attributes_with_values_for_update(keys)}
+        ->(keys){arel_attributes_with_values(attributes_for_update(keys))}
       )
       self.class.unscoped.update_for_bulk_sql(attributes_values)
     end
@@ -33,7 +33,7 @@ module ActiveRecord
     def create_for_bulk attrs
       attributes_values = arel_attributes_for_insert_or_update(
         attrs,
-        ->(keys){arel_attributes_with_values_for_create(keys)}
+        ->(keys){arel_attributes_with_values(attributes_for_create(keys))}
       )
       self.class.unscoped.insert_for_bulk_sql(attributes_values)
     end
@@ -53,6 +53,16 @@ module ActiveRecord
 
     def attr_names_without_system_attributes
       attribute_names - system_attributes
+    end
+
+    def arel_attributes_with_values(attribute_names)
+      attrs = {}
+      arel_table = self.class.arel_table
+
+      attribute_names.each do |name|
+        attrs[arel_table[name]] = read_attribute(name)
+      end
+      attrs
     end
   end
 end

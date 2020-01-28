@@ -6,7 +6,9 @@ module ActiveRecord
         pk = substitutes.find{|subs| subs.first.name == primary_key }
         substitutes.delete(pk)
 
-        compile_update(substitutes, pk.last).where(@table[primary_key].eq(pk.last)).to_sql if substitutes.present? && pk
+        if substitutes.present? && pk
+          arel.compile_update(substitutes, pk.last).where(@table[primary_key].eq(pk.last)).to_sql
+        end
       end
     end
 

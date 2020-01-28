@@ -16,11 +16,5 @@ RSpec.describe CatFeatures::IdGenerator do
     it "AR\#next_id works as expected" do
       expect(SimplePrimaryKey.next_id).to_not be_nil
     end
-
-    unless NEED_SPECIFY_OWNER
-      it "AR::create works as expected" do
-        expect(SimplePrimaryKey.create(name: "model1").id).to_not be_nil
-      end
-    end
   end
 end
